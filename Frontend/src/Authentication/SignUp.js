@@ -44,14 +44,14 @@ export default function SignUp() {
   const { register, handleSubmit, control } = formObjects;
   const onSubmit = data => {
     dispatch(Register(data)).then((action)=>{
-      navigate('/signIn')
-      // if(action.payload.status==="Success"){
-      //   console.log(action.payload.status);
-      //   navigate('/signIn');
-      // }
-      // else{
-      //   console.log(action.payload.status);
-      // }
+      //navigate('/signIn')
+      if(action.payload.Status==="Success"){
+        alert(action.payload.Message);
+        navigate('/signIn');
+      }
+      else{
+        alert(action.payload.Message);
+      }
     })
     console.log(data)
   }
