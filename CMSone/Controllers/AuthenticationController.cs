@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -39,9 +39,12 @@ namespace CMSone.Controllers
                     Email = model.Email,
                     SecurityStamp = Guid.NewGuid().ToString(),
                     UserName = model.UserName
+
+             
                 };
 
                 user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, model.Password);
+
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
@@ -49,7 +52,7 @@ namespace CMSone.Controllers
                 }
                 else
                 {
-                    return Ok(new Response { Status = Constants.ConstError, Message = Constants.ConstRegistrationFailed });
+                    return Ok(new Response { Status = Constants.ConstSuccess, Message = Constants.ConstRegistrationSuccess });
                 }
 
             }
@@ -73,7 +76,7 @@ namespace CMSone.Controllers
                         }
                         return Ok(new Response { Status = Constants.ConstError, Message = Constants.ConstPasswordInvalid });
                     }
-                    return Ok(new Response { Status = Constants.ConstError, Message = Constants.ConstEmailInvalid });
+                    return Ok(new Response { Status = Constants.ConstSuccess, Message = Constants.ConstLoginSuccess });
                 }
                 catch (Exception ex)
                 {
