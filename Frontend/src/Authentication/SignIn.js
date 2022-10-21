@@ -35,14 +35,14 @@ export default function SignIn() {
   const { register, handleSubmit, control } = formObjects;
   const onSubmit = data => {
     dispatch(Login(data)).then((action) => {
-      navigate('/Home')
-      // if (action.payload.status === "Success") {
-      //   console.log(action.payload.status);
-      //   navigate('/Home');
-      // }
-      // else {
-      //   console.log(action.payload.status)
-      // }
+      // navigate('/Home')
+      if (action.payload.Status === "Success") {
+        alert(action.payload.Message);
+        navigate('/Home');
+      }
+      else {
+        alert(action.payload.Message)
+      }
     })
   }
 
